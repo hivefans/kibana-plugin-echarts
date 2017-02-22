@@ -1,4 +1,6 @@
+import visTypes from 'ui/registry/vis_types';
 define(function (require) {
-  var visTypes = require('ui/registry/vis_types');
   visTypes.register(require('plugins/kibana-plugin-echarts/echarts_pie'));
+  visTypes.register(require('plugins/kibana-plugin-echarts/echarts_line'));
+  //
 });

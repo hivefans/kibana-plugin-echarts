@@ -1,11 +1,10 @@
+import 'plugins/kibana-plugin-echarts/kibana-plugin-echarts.less';
+import 'plugins/kibana-plugin-echarts/echarts_pie_controller';
 import TemplateVisTypeTemplateVisTypeProvider from 'ui/template_vis_type/template_vis_type';
 import VisSchemasProvider from 'ui/vis/schemas';
 import echartsPieTemplate from 'plugins/kibana-plugin-echarts/echarts_pie.html';
 import echartsPieParamsTemplate from 'plugins/kibana-plugin-echarts/echarts_pie_editor.html';
-import 'plugins/kibana-plugin-echarts/EchartsPieController';
 
-
-require('ui/registry/vis_types').register(echartsPieProvider);
 
 function echartsPieProvider(Private) {
     const TemplateVisType = Private(TemplateVisTypeTemplateVisTypeProvider);
@@ -23,8 +22,7 @@ function echartsPieProvider(Private) {
         defaults: {
           shareYAxis: true,
           addTooltip: true,
-          addLegend: true,
-          isDonut: false
+          addLegend: true
         },
         editor: echartsPieParamsTemplate
       },
