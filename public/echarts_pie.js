@@ -1,20 +1,24 @@
-define(function(require) {
+import TemplateVisTypeTemplateVisTypeProvider from 'ui/template_vis_type/template_vis_type';
+import VisSchemasProvider from 'ui/vis/schemas';
+import echartsPieTemplate from 'plugins/kibana-plugin-echarts/echarts_pie.html';
+import echartsPieParamsTemplate from 'plugins/kibana-plugin-echarts/echarts_pie_editor.html';
+import 'plugins/kibana-plugin-echarts/EchartsPieController';
 
+
+require('ui/registry/vis_types').register(echartsPieProvider);
+
+function echartsPieProvider(Private) {
+    const TemplateVisType = Private(TemplateVisTypeTemplateVisTypeProvider);
+    const Schemas = Private(VisSchemasProvider);
   // we also need to load the controller and used by the template
-  require('plugins/kibana-plugin-echarts/echartsPieController');
+  // require('plugins/kibana-plugin-echarts/echartsPieController');
 
-  // register the provider with the visTypes registry
-  // require('ui/registry/vis_types').register(EchartsHistogramVisType);
-
-  return function EchartsHistogramVisType(Private) {
-    var TemplateVisType = Private(require('ui/template_vis_type/TemplateVisType'));
-    var Schemas = Private(require('ui/Vis/Schemas'));
     return new TemplateVisType({
       name: 'echarts_pie',
       title: 'Echarts Pie',
       icon: 'fa-pie-chart',
       description: '测试Echarts Pie',
-      template: require('plugins/kibana-plugin-echarts/echarts_pie.html'),
+      template: echartsPieTemplate,
       params: {
         defaults: {
           shareYAxis: true,
@@ -22,7 +26,7 @@ define(function(require) {
           addLegend: true,
           isDonut: false
         },
-        editor: require('plugins/kibana-plugin-echarts/echarts_pie_editor.html')
+        editor: echartsPieParamsTemplate
       },
       responseConverter: false,
       hierarchicalData: true,
@@ -56,5 +60,6 @@ define(function(require) {
         aggFilter: '!geohash_grid'
       }])
     });
-  }
-});
+};
+
+export default echartsPieProvider;
