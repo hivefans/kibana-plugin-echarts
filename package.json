@@ -1,4 +1,10 @@
 {
 	"name": "kibana-plugin-echarts",
-	"version": "0.1.0"
+	"version": "0.1.0",
+	"kibana": {
+      "version": "5.1.2"
+    },
+	"dependencies": {
+		"echarts": "3.4.0"
+	}
 }

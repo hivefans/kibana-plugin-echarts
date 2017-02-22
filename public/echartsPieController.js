@@ -3,7 +3,7 @@ import 'echarts/lib/chart/pie';
 
 var module = require('ui/modules').get('kibana-plugin-echarts');
 
-module.controller('EchartsPieController', function($scope, $element, $rootScope, Private, Notifier) {
+module.controller('EchartsPieController', function ($scope, $element, $rootScope, Private, Notifier) {
   var tabifyAggResponse = Private(require('ui/agg_response/tabify/tabify'));
   var notify = new Notifier({ location: 'kibana-plugin-echarts/EchartsPieController'});
   let mychart = echarts.init($element.get(0));
