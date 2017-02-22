@@ -8,7 +8,7 @@ module.controller('EchartsPieController', function ($scope, $element, $rootScope
   var notify = new Notifier({ location: 'kibana-plugin-echarts/EchartsPieController'});
   let mychart = echarts.init($element.get(0));
   var option = {
-          tooltip: {
+        tooltip: {
             trigger: 'item',
             formatter: "{a} <br/>{b}: {c} ({d}%)"
         },

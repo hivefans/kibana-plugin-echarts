@@ -24,7 +24,8 @@ function echartsLineProvider(Private) {
         defaults: {
           shareYAxis: true,
           addTooltip: true,
-          addLegend: true
+          addLegend: true,
+          isDonut: false
         },
         editor: echartsLineParamsTemplate
       },

@@ -22,7 +22,8 @@ function echartsPieProvider(Private) {
         defaults: {
           shareYAxis: true,
           addTooltip: true,
-          addLegend: true
+          addLegend: true,
+          isDonut: false
         },
         editor: echartsPieParamsTemplate
       },

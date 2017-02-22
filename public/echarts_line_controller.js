@@ -32,7 +32,7 @@ module.controller('EchartsLineController', function ($scope, $element, $rootScop
             type: 'log'
         }
     };
-    var data=[],legendData=[];
+    var data=[],legendData=[],xdata = [];
     $scope.$watch('esResponse', function(resp) {
       if (!resp) {
         return;
