@@ -171,7 +171,8 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
             if(i < data_length ){
                 option.series.push({
                         name: key,
-                        type: "bar",
+                        type: "map",
+                        mapType: "china",
                         stack: "占比",
                         barMaxWidth: 50,
                         barGap: "10%",
