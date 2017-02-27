@@ -9,8 +9,8 @@ module.controller('EchartsPieController', function ($scope, $element, $rootScope
   let mychart = echarts.init($element.get(0));
   var option = {
         tooltip: {
-            trigger: 'item',
-            formatter: "{a} <br/>{b}: {c} ({d}%)"
+            trigger: 'item'
+            // formatter: "{a} <br/>{b}: {c} ({d}%)"
         },
         legend: {
             orient: 'vertical',
@@ -47,17 +47,17 @@ module.controller('EchartsPieController', function ($scope, $element, $rootScope
       console.log("--------------resp---------------------");
       console.log(resp);
       var tableGroups = tabifyAggResponse($scope.vis, resp);
-      console.log(tableGroups)
-      console.log("--------------mychart---------------------");
+    //   console.log(tableGroups)
+    //   console.log("--------------mychart---------------------");
      
       tableGroups.tables.forEach(function (table,index) {
         var cols = table.columns;
         data= [], legendData=[]; 
         table.rows.forEach(function (row,i) {
 
-          console.log(row[0])
-          console.log(row[0].toString())
-          console.log(row[1])
+        //   console.log(row[0])
+        //   console.log(row[0].toString())
+        //   console.log(row[1])
             var item = {};
             var name = row[0].toString()
             item.name = name;//cols[i].aggConfig.params.field.displayName;

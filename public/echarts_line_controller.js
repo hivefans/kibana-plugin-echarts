@@ -4,6 +4,16 @@ import 'echarts/lib/chart/line';
 var module = require('ui/modules').get('kibana-plugin-echarts');
 
 module.controller('EchartsLineController', function ($scope, $element, $rootScope, Private, Notifier) {
+  let rootElement = $element;
+  let margin = {
+    top: 10,
+    right: 10,
+    bottom: 10,
+    left: 10
+  };
+  let width;
+  let height;
+
   var tabifyAggResponse = Private(require('ui/agg_response/tabify/tabify'));
   var notify = new Notifier({ location: 'kibana-plugin-echarts/EchartsLineController'});
   let mychart = echarts.init($element.get(0));
@@ -66,6 +76,15 @@ module.controller('EchartsLineController', function ($scope, $element, $rootScop
 
       mychart.setOption(option,true);
       
+      width = $(rootElement).width() - margin.left - margin.right;
+      height = $(rootElement).height() - margin.top - margin.bottom;
+      console.log("width:"+width);
+      console.log("height:"+height);
+      mychart.resize({
+          option,
+          width,
+          height
+      })
       return  notify.timed('Echarts Line Controller', resp);
     });
   });
