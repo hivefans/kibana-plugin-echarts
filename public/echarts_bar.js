@@ -17,7 +17,7 @@ function echartsBarProvider(Private) {
     return new TemplateVisType({
       name: 'echarts_bar',
       title: 'Echarts Bar',
-      icon: 'fa-calculator',
+      icon: 'fa-bar-chart',
       description: '各省份访问时间占比',
       template: echartsBarTemplate,
       params: {
