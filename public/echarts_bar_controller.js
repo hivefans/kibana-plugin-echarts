@@ -181,7 +181,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
                             normal: {
                                 color: colors[i%data_length],
                                 label: {
-                                    show: $scope.vis.params.isDonut,
+                                    show: true,
                                     textStyle: {
                                         color: '#000'
                                     },
