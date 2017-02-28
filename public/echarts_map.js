@@ -17,8 +17,8 @@ function echartsMapProvider(Private) {
     return new TemplateVisType({
       name: 'echarts_map',
       title: 'Echarts Map',
-      icon: 'fa-leaf',
-      description: '各省份下载速度分部',
+      icon: 'fa-map-marker',
+      description: 'Cdn访问质量',
       template: echartsMapTemplate,
       params: {
         defaults: {
