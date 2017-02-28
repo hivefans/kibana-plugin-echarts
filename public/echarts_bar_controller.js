@@ -33,6 +33,17 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
                 return p.value + '%';
             }
         },
+        toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'left',
+            top: 'center',
+            feature: {
+                dataView: {readOnly: true},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
         legend: {
             left:'right',
             top:'top',
