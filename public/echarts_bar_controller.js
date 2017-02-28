@@ -27,12 +27,14 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
             }
         },
         tooltip: {
-            show:true,
-            trigger:'axis'
+            formatter: function(p) {
+                // console.log(p)
+                return p.value + '%';
+            }
         },
         legend: {
-            right:'20px',
-            top:'20px',
+            right:'3%',
+            top:'6%',
             orient:'vertical',
             data:new Array()
         },
@@ -201,6 +203,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
                     });
                 //填充legend
                 option.legend.data.push(key);
+                console.log("key:"+key);
             }else{
                 option.series[i%data_length].data.push((value/total_count*100).toFixed(2));
             }
