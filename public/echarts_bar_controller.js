@@ -169,6 +169,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
     //  console.log(tableGroups);
     //  console.log("=====option=====")
     //  console.log(option);
+    console.log($scope.vis.aggs);
      tableGroups.tables.forEach(function (table,index) {
         var cols = table.columns;
         if(!cols){
