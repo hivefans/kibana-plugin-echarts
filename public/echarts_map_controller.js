@@ -1,5 +1,6 @@
 import echarts from 'echarts/lib/echarts';
 import 'echarts/lib/chart/map';
+import 'echarts/map/js/china';
 
 var module = require('ui/modules').get('kibana-plugin-echarts');
 
