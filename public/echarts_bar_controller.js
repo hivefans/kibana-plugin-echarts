@@ -52,7 +52,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
             data: new Array()
         },
         xAxis: {
-            type: "category",
+            type: 'category',
             data:["占比"],
             splitLine: {
                 show: false
@@ -72,11 +72,8 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
             data: new Array()
         },
         yAxis: [{
-            type: 'category',
-            axisLabel:{formatter:'{value}%'},
-            max: '100'
-        }, {
             type: "value",
+            axisLabel:{formatter:'{value}%'},
             splitLine: {
                 show: false
             },
@@ -90,6 +87,28 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
                 show: false,
             },
         }],
+        dataZoom: [
+            {
+                show: true, 
+                height: 30, 
+                xAxisIndex: [
+                    0
+                ], 
+                bottom:40,
+                start: 0, 
+                end: 80
+            }, 
+            {
+                type: "inside", 
+                show: true, 
+                height: 15, 
+                xAxisIndex: [
+                    0
+                ], 
+                "start": 1, 
+                "end": 35
+            }
+        ],
         series: new Array()
     };
 
