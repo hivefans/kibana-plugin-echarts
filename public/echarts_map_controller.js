@@ -67,7 +67,7 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
                     show: true
                 }
             },
-            data: speeds
+            data: new Array()
         }]
     };
 
@@ -141,11 +141,11 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
         return;
       }
         var avgArr = new Array();
-        speeds = new Array();
+        // speeds = new Array();
         //  console.log("=========resp=========");
         //  console.log(resp);
         tableGroups = tabifyAggResponse($scope.vis, resp);
-        console.log(tableGroups);
+        // console.log(tableGroups);
         // console.log("=====option=====")
         //  console.log(option);
         tableGroups.tables.forEach(function (table,index) {
@@ -154,7 +154,7 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
                 var region_name = row[0].toString();
                 var avg_speed = row[1];
                 avgArr.push(avg_speed);
-                speeds.push(
+                option.series[0].data.push(
                     {
                         name:convertProvince(region_name),
                         value:avg_speed.toFixed(2)
