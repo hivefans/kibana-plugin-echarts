@@ -73,11 +73,8 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
         },
         yAxis: [{
             type: 'category',
-            axisLine: {
-                lineStyle: {
-                    color: "#000000"
-                }
-            },
+            axisLabel:{formatter:'{value}%'},
+            max: '100'
         }, {
             type: "value",
             splitLine: {
@@ -155,7 +152,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
     }
 
 
-    var colors = ['#008000', '#32CD32', '#F0E68C' ,'#e8d106','#F5DEB3','#FF7F50','#e88906','#e80606'];
+    var colors = ['#008000', '#32CD32', '#F0E68C' ,'#F5DEB3','#e8d106','#FF7F50','#e88906','#e80606'];
     
     // var data=[],legendData=[];
     $scope.$watch('esResponse', function(resp) {
