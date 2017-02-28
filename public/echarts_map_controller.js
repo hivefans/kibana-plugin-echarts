@@ -8,6 +8,17 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
   var notify = new Notifier({ location: 'kibana-plugin-echarts/EchartsMapController'});
   let mychart = echarts.init($element.get(0));
   var fontFamilys = ['微软雅黑'];
+  let rootElement = $element;
+  let margin = {
+    top: 10,
+    right: 10,
+    bottom: 10,
+    left: 10
+  };
+  var speeds = new Array();
+  let width;
+  let height;
+
   var option = {
         title: {
             text: 'cdn访问质量',
@@ -16,58 +27,47 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
                 fontSize: 14
             }
         },
+        visualMap: {
+            min: 0,
+            max: 1024,
+            inRange: {
+                color: ['#0ba800','#eac736','#d94e5d'].reverse()
+            },
+            left: 'left',
+            top: 'bottom',
+            text: ['最大速度(KB/s)','最小速度'], 
+            calculable: true
+        },
+        toolbox: {
+            show: true,
+            orient: 'vertical',
+            left: 'right',
+            top: 'center',
+            feature: {
+                dataView: {readOnly: false},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
         tooltip: {
+            trigger: 'item'
         },
-        legend: {
-            right:'3%',
-            top:'6%',
-            orient:'vertical',
-            data:new Array()
-        },
-        xAxis: {
-            type: "category",
-            data:["占比"],
-            splitLine: {
-                show: false
-            },
-            axisLabel: {
-                interval: 0,
-                show: true,
-                textStyle: {
-                    fontFamily: fontFamilys[0],
-                    fontSize: 12
+        series: [{
+            name: 'CDN日志',
+            type: 'map',
+            mapType: 'china',
+            // coordinateSystem: 'geo',
+            roam: false,
+            label: {
+                normal: {
+                    show: true
+                },
+                emphasis: {
+                    show: true
                 }
             },
-            axisLine: {
-                lineStyle: {
-                    color: "#000000"
-                }
-            },
-            data: new Array()
-        },
-        yAxis: [{
-            type: 'category',
-            axisLine: {
-                lineStyle: {
-                    color: "#000000"
-                }
-            },
-        }, {
-            type: "value",
-            splitLine: {
-                show: false
-            },
-            axisTick: {
-                show: false
-            },
-            axisLine: {
-                show: false,
-            },
-            axisLabel: {
-                show: false,
-            },
-        }],
-        series: new Array()
+            data: speeds
+        }]
     };
 
     var provinces = [
@@ -128,21 +128,11 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
         }
     }
 
-    //x轴是否存在省份
-    function appendRrovince(region_name){
-        var inside = false;
-        for(var i in option.xAxis[0].data){
-            if (region_name == i){
-                inside = true;
-            }
-        }
-        if(!inside){
-            option.xAxis.data.push(region_name);
-        }
-    }
 
-    var colors = ['#008000', '#32CD32', '#F0E68C' ,'#e8d106','#F5DEB3','#FF7F50','#e88906','#e80606'];
+
+    
     var tableGroups;
+    var avgArr = new Array();
     // var data=[],legendData=[];
     $scope.$watch('esResponse', function(resp) {
       if (!resp) {
@@ -152,7 +142,7 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
     //  console.log("=========resp=========");
     //  console.log(resp);
      tableGroups = tabifyAggResponse($scope.vis, resp);
-    //  console.log(tableGroups);
+    console.log(tableGroups);
      console.log("=====option=====")
     //  console.log(option);
      tableGroups.tables.forEach(function (table,index) {
@@ -161,51 +151,21 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
         table.rows.forEach(function (row,i) {
             var region_name = row[0].toString();
             var total_count = row[1];
-            // console.log(row[2]);
-            var key = row[2]["gte"] + " - " + row[2]["lt"];
-            var value = row[3];
-            // appendRrovince(convertProvince(region_name));
-            if(i%data_length == 0 ){
-                option.xAxis.data.push(convertProvince(region_name));
-            }
-            if(i < data_length ){
-                option.series.push({
-                        name: key,
-                        type: "map",
-                        mapType: "china",
-                        stack: "占比",
-                        barMaxWidth: 50,
-                        barGap: "10%",
-                        yAxisIndex: 1,
-                        itemStyle: {
-                            normal: {
-                                color: colors[i%data_length],
-                                label: {
-                                    show: true,
-                                    textStyle: {
-                                        color: '#000'
-                                    },
-                                    // position: "insideTop",
-                                    position: "insideBottom",
-                                    formatter: function(p) {
-                                        return p.value + '%';
-                                    }
-                                }
-                            }
-                        },
-                        data:[(value/total_count*100).toFixed(2)]
-                        
-                    });
-                //填充legend
-                option.legend.data.push(key);
-            }else{
-                option.series[i%data_length].data.push((value/total_count*100).toFixed(2));
-            }
+            console.log(row);
+            
+            
+            
 
         });
       });
       mychart.setOption(option,true);
-      
+      width = $(rootElement).width() - margin.left - margin.right;
+      height = $(rootElement).height() - margin.top - margin.bottom;
+      mychart.resize({
+          option,
+          width,
+          height
+      });
       return  notify.timed('Echarts Bar Controller', resp);
     });
   });
