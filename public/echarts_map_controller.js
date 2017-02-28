@@ -130,10 +130,14 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
 
 
 
+    //state.query
     
     var tableGroups;
     var avgArr = new Array();
     // var data=[],legendData=[];
+    console.log($scope);
+    $scope.state.query = "geoip.country_code2:CN AND -type:cdnlog AND verb:GET AND ( response:206 OR response:200)";
+    
     $scope.$watch('esResponse', function(resp) {
       if (!resp) {
         return;
@@ -142,8 +146,8 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
     //  console.log("=========resp=========");
     //  console.log(resp);
      tableGroups = tabifyAggResponse($scope.vis, resp);
-    console.log(tableGroups);
-    console.log("=====option=====")
+    // console.log(tableGroups);
+    // console.log("=====option=====")
     //  console.log(option);
      tableGroups.tables.forEach(function (table,index) {
         var cols = table.columns;
