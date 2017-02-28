@@ -180,7 +180,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
             var region_name = row[0].toString();
             var total_count = row[1];
             // console.log(row[2]);
-            var key = row[2]["gte"] + " - " + row[2]["lt"];
+            var key = row[2]["gte"] + " - " + (row[2]["lt"] == "Infinity"?"":row[2]["lt"]);
             var value = row[3];
             if(i%data_length == 0 ){
                 option.xAxis.data.push(convertProvince(region_name));
@@ -190,7 +190,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
                         name: key,
                         type: "bar",
                         stack: "占比",
-                        barMaxWidth: 50,
+                        barMaxWidth: 55,
                         barGap: "10%",
                         yAxisIndex: 1,
                         itemStyle: {
@@ -201,8 +201,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
                                     textStyle: {
                                         color: '#000'
                                     },
-                                    // position: "insideTop",
-                                    //position: "insideBottom",
+                                    position: "insideTop",
                                     formatter: function(p) {
                                         return p.value + '%';
                                     }
