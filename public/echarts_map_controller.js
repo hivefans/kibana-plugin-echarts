@@ -135,9 +135,6 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
     
     var tableGroups;
     
-    // var data=[],legendData=[];
-    // console.log($scope);
-    // $scope.state.query = "geoip.country_code2:CN AND -type:cdnlog AND verb:GET AND ( response:206 OR response:200)";
     
     $scope.$watch('esResponse', function(resp) {
       if (!resp) {
@@ -148,7 +145,7 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
         //  console.log("=========resp=========");
         //  console.log(resp);
         tableGroups = tabifyAggResponse($scope.vis, resp);
-        // console.log(tableGroups);
+        console.log(tableGroups);
         // console.log("=====option=====")
         //  console.log(option);
         tableGroups.tables.forEach(function (table,index) {
