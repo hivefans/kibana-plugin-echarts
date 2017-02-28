@@ -134,7 +134,7 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
     //state.query
     
     var tableGroups;
-    var avgArr = new Array();
+    
     // var data=[],legendData=[];
     // console.log($scope);
     // $scope.state.query = "geoip.country_code2:CN AND -type:cdnlog AND verb:GET AND ( response:206 OR response:200)";
@@ -143,37 +143,38 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
       if (!resp) {
         return;
       }
-     
-    //  console.log("=========resp=========");
-    //  console.log(resp);
-     tableGroups = tabifyAggResponse($scope.vis, resp);
-    // console.log(tableGroups);
-    // console.log("=====option=====")
-    //  console.log(option);
-     tableGroups.tables.forEach(function (table,index) {
-        var cols = table.columns;
-        table.rows.forEach(function (row,i) {
-            var region_name = row[0].toString();
-            var avg_speed = row[1];
-            avgArr.push(avg_speed);
-            speeds.push(
-                {
-                    name:convertProvince(region_name),
-                    value:avg_speed.toFixed(2)
-                }
-            )
+        var avgArr = new Array();
+        speeds = new Array();
+        //  console.log("=========resp=========");
+        //  console.log(resp);
+        tableGroups = tabifyAggResponse($scope.vis, resp);
+        // console.log(tableGroups);
+        // console.log("=====option=====")
+        //  console.log(option);
+        tableGroups.tables.forEach(function (table,index) {
+            var cols = table.columns;
+            table.rows.forEach(function (row,i) {
+                var region_name = row[0].toString();
+                var avg_speed = row[1];
+                avgArr.push(avg_speed);
+                speeds.push(
+                    {
+                        name:convertProvince(region_name),
+                        value:avg_speed.toFixed(2)
+                    }
+                )
 
+            });
         });
-      });
-      option.visualMap.max = Math.max.apply(Math, avgArr);
-      mychart.setOption(option,true);
-      width = $(rootElement).width() - margin.left - margin.right;
-      height = $(rootElement).height() - margin.top - margin.bottom;
-      mychart.resize({
-          option,
-          width,
-          height
-      });
+        option.visualMap.max = Math.max.apply(Math, avgArr);
+        mychart.setOption(option,true);
+        width = $(rootElement).width() - margin.left - margin.right;
+        height = $(rootElement).height() - margin.top - margin.bottom;
+        mychart.resize({
+            option,
+            width,
+            height
+        });
       return  notify.timed('Echarts Bar Controller', resp);
     });
   });
