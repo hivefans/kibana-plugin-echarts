@@ -143,21 +143,24 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
     //  console.log(resp);
      tableGroups = tabifyAggResponse($scope.vis, resp);
     console.log(tableGroups);
-     console.log("=====option=====")
+    console.log("=====option=====")
     //  console.log(option);
      tableGroups.tables.forEach(function (table,index) {
         var cols = table.columns;
-        var data_length = cols[2].aggConfig.params.ranges.length;
         table.rows.forEach(function (row,i) {
             var region_name = row[0].toString();
-            var total_count = row[1];
-            console.log(row);
-            
-            
-            
+            var avg_speed = row[1];
+            avgArr.push(avg_speed);
+            speeds.push(
+                {
+                    name:convertProvince(region_name),
+                    value:avg_speed.toFixed(2)
+                }
+            )
 
         });
       });
+      option.visualMap.max = Math.max.apply(Math, avgArr);
       mychart.setOption(option,true);
       width = $(rootElement).width() - margin.left - margin.right;
       height = $(rootElement).height() - margin.top - margin.bottom;

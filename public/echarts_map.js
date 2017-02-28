@@ -53,7 +53,7 @@ function echartsMapProvider(Private) {
         aggFilter: '!geohash_grid',
         defaults: [{
           schema: 'metric',
-          type: 'count'
+          type: 'count',
         }]
       }, {
         group: 'buckets',
@@ -61,7 +61,7 @@ function echartsMapProvider(Private) {
         icon: 'fa fa-scissors',
         title: 'X-Axis',
         min: 1,
-        max: 2,
+        max: 1,
         aggFilter: '!geohash_grid'
       }])
     });
