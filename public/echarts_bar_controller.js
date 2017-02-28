@@ -20,23 +20,24 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
   var fontFamilys = ['微软雅黑'];
   var option = {
         title: {
-            text: '访问时间占比(ms)',
+            text: '访问时间占比',
             x: 'center',
             textStyle: {
                 fontSize: 14
             }
         },
         tooltip: {
+            // trigger: 'item',
             formatter: function(p) {
                 // console.log(p)
                 return p.value + '%';
             }
         },
         legend: {
-            right:'3%',
-            top:'6%',
+            left:'right',
+            top:'top',
             orient:'vertical',
-            data:new Array()
+            data: new Array()
         },
         xAxis: {
             type: "category",
@@ -48,7 +49,6 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
                 interval: 0,
                 show: true,
                 textStyle: {
-                    fontFamily: fontFamilys[0],
                     fontSize: 12
                 }
             },

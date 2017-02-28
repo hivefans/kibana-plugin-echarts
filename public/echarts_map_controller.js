@@ -8,7 +8,6 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
   var tabifyAggResponse = Private(require('ui/agg_response/tabify/tabify'));
   var notify = new Notifier({ location: 'kibana-plugin-echarts/EchartsMapController'});
   let mychart = echarts.init($element.get(0));
-  var fontFamilys = ['微软雅黑'];
   let rootElement = $element;
   let margin = {
     top: 10,
