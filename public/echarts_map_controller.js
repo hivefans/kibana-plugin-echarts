@@ -174,4 +174,17 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
         });
       return  notify.timed('Echarts Bar Controller', resp);
     });
+
+    // Automatic resizing of graphics
+	$scope.$watch(
+		function () {
+			width = $(rootElement).width() - margin.left - margin.right;
+            height = $(rootElement).height() - margin.top - margin.bottom;
+            mychart.resize({
+                width,
+                height
+            });
+		}, 
+		true
+	);
   });
