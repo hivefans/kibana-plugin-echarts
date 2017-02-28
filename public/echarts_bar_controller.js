@@ -34,17 +34,17 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
                 return p.value + '%';
             }
         },
-        toolbox: {
-            show: true,
-            orient: 'vertical',
-            left: 'left',
-            top: 'center',
-            feature: {
-                dataView: {readOnly: true},
-                restore: {},
-                saveAsImage: {}
-            }
-        },
+        // toolbox: {
+        //     show: true,
+        //     orient: 'vertical',
+        //     left: 'left',
+        //     top: 'center',
+        //     feature: {
+        //         dataView: {readOnly: true},
+        //         restore: {},
+        //         saveAsImage: {}
+        //     }
+        // },
         legend: {
             left:'right',
             top:'top',
@@ -198,7 +198,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
                             normal: {
                                 color: colors[i%data_length],
                                 label: {
-                                    show: true,
+                                    show: false,
                                     textStyle: {
                                         color: '#000'
                                     },
