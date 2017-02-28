@@ -31,8 +31,8 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
             trigger:'axis'
         },
         legend: {
-            right:'auto',
-            top:'auto',
+            right:'20px',
+            top:'20px',
             orient:'vertical',
             data:new Array()
         },
@@ -155,10 +155,13 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
      option.xAxis.data = new Array();
     var tableGroups = tabifyAggResponse($scope.vis, resp);
     //  console.log(tableGroups);
-     console.log("=====option=====")
+    //  console.log("=====option=====")
     //  console.log(option);
      tableGroups.tables.forEach(function (table,index) {
         var cols = table.columns;
+        if(!cols){
+            return;
+        }
         var data_length = cols[2].aggConfig.params.ranges.length;
         table.rows.forEach(function (row,i) {
             var region_name = row[0].toString();
