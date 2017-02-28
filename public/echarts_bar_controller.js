@@ -87,28 +87,28 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
                 show: false,
             },
         }],
-        dataZoom: [
-            {
-                show: true, 
-                height: 30, 
-                xAxisIndex: [
-                    0
-                ], 
-                bottom:40,
-                start: 0, 
-                end: 80
-            }, 
-            {
-                type: "inside", 
-                show: true, 
-                height: 15, 
-                xAxisIndex: [
-                    0
-                ], 
-                "start": 1, 
-                "end": 35
-            }
-        ],
+        // dataZoom: [
+        //     {
+        //         show: true, 
+        //         height: 30, 
+        //         xAxisIndex: [
+        //             0
+        //         ], 
+        //         bottom:40,
+        //         start: 0, 
+        //         end: 80
+        //     }, 
+        //     {
+        //         type: "inside", 
+        //         show: true, 
+        //         height: 15, 
+        //         xAxisIndex: [
+        //             0
+        //         ], 
+        //         "start": 1, 
+        //         "end": 35
+        //     }
+        // ],
         series: new Array()
     };
 
