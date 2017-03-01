@@ -49,7 +49,10 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
             left:'right',
             top:'top',
             orient:'vertical',
-            data: new Array()
+            data: new Array(),
+            textStyle:{
+                color:"#ede8e8"
+            }
         },
         xAxis: {
             type: 'category',
@@ -66,7 +69,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
             },
             axisLine: {
                 lineStyle: {
-                    color: "#000000"
+                    color: "#f2eaea"
                 }
             },
             data: new Array()
@@ -213,7 +216,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
                     });
                 //填充legend
                 option.legend.data.push(key);
-                console.log("key:"+key);
+                // console.log("key:"+key);
             }else{
                 option.series[i%data_length].data.push((value/total_count*100).toFixed(2));
             }
