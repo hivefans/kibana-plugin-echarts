@@ -20,6 +20,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
   var fontFamilys = ['微软雅黑'];
   console.log(rootElement);
   var option = {
+        backgroundColor : '#12131b',
         title: {
             text: '访问时间占比',
             x: 'center',
@@ -49,10 +50,10 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
             left:'right',
             top:'top',
             orient:'vertical',
-            data: new Array(),
-            textStyle:{
-                color:"#000000"
-            }
+            data: new Array()
+            // textStyle:{
+            //     color:"#000000"
+            // }
         },
         xAxis: {
             type: 'category',
@@ -68,9 +69,9 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
                 }
             },
             axisLine: {
-                lineStyle: {
-                    color: "#000000"
-                }
+                // lineStyle: {
+                //     color: "#000000"
+                // }
             },
             data: new Array()
         },
