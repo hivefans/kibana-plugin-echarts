@@ -20,7 +20,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
   var fontFamilys = ['微软雅黑'];
   console.log(rootElement);
   var option = {
-        backgroundColor : '#12131b',
+        // backgroundColor : '#12131b',
         title: {
             text: '访问时间占比',
             x: 'center',
