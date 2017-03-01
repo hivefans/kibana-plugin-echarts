@@ -1,6 +1,5 @@
 import echarts from 'echarts/lib/echarts';
 import 'echarts/lib/chart/bar';
-// import 'public_function';
 
 var module = require('ui/modules').get('kibana-plugin-echarts');
 
@@ -19,6 +18,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
   var notify = new Notifier({ location: 'kibana-plugin-echarts/EchartsBarController'});
   let mychart = echarts.init($element.get(0));
   var fontFamilys = ['微软雅黑'];
+  console.log(rootElement);
   var option = {
         title: {
             text: '访问时间占比',
@@ -51,7 +51,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
             orient:'vertical',
             data: new Array(),
             textStyle:{
-                color:"#ede8e8"
+                color:"#000000"
             }
         },
         xAxis: {
@@ -69,7 +69,7 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
             },
             axisLine: {
                 lineStyle: {
-                    color: "#f2eaea"
+                    color: "#000000"
                 }
             },
             data: new Array()
