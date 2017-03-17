@@ -25,15 +25,17 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
             text: '访问时间占比',
             x: 'center',
             textStyle: {
-                fontSize: 14
+                fontSize: 14,
+                olor:"#a6a6a6"
             }
         },
-        tooltip: {
-            // trigger: 'item',
-            formatter: function(p) {
-                return p.value + '%';
-            }
-        },
+        tooltip: {},
+        // tooltip: {
+        //     // trigger: 'item',
+        //     formatter: function(p) {
+        //         return p.value + '%';
+        //     }
+        // },
         // toolbox: {
         //     show: true,
         //     orient: 'vertical',

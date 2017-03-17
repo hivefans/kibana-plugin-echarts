@@ -25,7 +25,8 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
             text: 'cdn访问质量',
             x: 'center',
             textStyle: {
-                fontSize: 14
+                fontSize: 14,
+                olor:"#a6a6a6"
             }
         },
         visualMap: {
