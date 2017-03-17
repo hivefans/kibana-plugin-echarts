@@ -50,10 +50,10 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
             left:'right',
             top:'top',
             orient:'vertical',
-            data: new Array()
-            // textStyle:{
-            //     color:"#000000"
-            // }
+            data: new Array(),
+            textStyle:{
+                color:"#a6a6a6"
+            }
         },
         xAxis: {
             type: 'category',
@@ -69,9 +69,9 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
                 }
             },
             axisLine: {
-                // lineStyle: {
-                //     color: "#000000"
-                // }
+                lineStyle: {
+                    color: "#a6a6a6"
+                }
             },
             data: new Array()
         },
