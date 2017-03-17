@@ -37,7 +37,10 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
             left: 'left',
             top: 'bottom',
             text: ['最大速度(KB/s)','最小速度'], 
-            calculable: true
+            calculable: true,
+            textStyle:{
+                color:"#a6a6a6"
+            }
         },
         toolbox: {
             show: true,

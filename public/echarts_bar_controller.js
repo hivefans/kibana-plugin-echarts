@@ -31,7 +31,6 @@ module.controller('EchartsBarController', function ($scope, $element, $rootScope
         tooltip: {
             // trigger: 'item',
             formatter: function(p) {
-                // console.log(p)
                 return p.value + '%';
             }
         },
