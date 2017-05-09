@@ -1,4 +1,5 @@
 *.project
+.gitignore
 .settings/org.eclipse.core.resources.prefs
 node_modules
 debug.log
