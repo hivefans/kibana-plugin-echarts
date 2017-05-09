@@ -18,7 +18,7 @@ function echartsMapProvider(Private) {
       name: 'echarts_map',
       title: 'Echarts Map',
       icon: 'fa-map-marker',
-      description: 'Cdn访问质量',
+      description: '日志访问统计中国地图',
       template: echartsMapTemplate,
       params: {
         defaults: {

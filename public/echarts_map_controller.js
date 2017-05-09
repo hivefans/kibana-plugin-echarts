@@ -16,13 +16,12 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
     bottom: 10,
     left: 10
   };
-  var speeds = new Array();
   let width;
   let height;
 
   var option = {
         title: {
-            text: 'cdn访问质量',
+            text: 'CDN访问统计地图',
             x: 'center',
             textStyle: {
                 fontSize: 14,
@@ -37,14 +36,14 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
             },
             left: 'left',
             top: 'bottom',
-            text: ['最大速度(KB/s)','最小速度'], 
+            text: ['最大值','最小值'], 
             calculable: true,
             textStyle:{
                 color:"#a6a6a6"
             }
         },
         toolbox: {
-            show: true,
+            show: false,
             orient: 'vertical',
             left: 'right',
             top: 'center',
@@ -75,65 +74,6 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
         }]
     };
 
-    var provinces = [
-        { name: "Anhui", value: "安徽" },
-        { name: "Beijing", value: "北京" },
-        { name: "Fujian", value: "福建" },
-        { name: "Gansu", value: "甘肃" },
-        { name: "Guangdong", value: "广东" },
-        { name: "Guangxi Zhuang Autonomous Region", value: "广西" },
-        { name: "Guizhou", value: "贵州" },
-        { name: "Hainan", value: "海南" },
-        { name: "Hebei", value: "河北" },
-        { name: "Henan", value: "河南" },
-        { name: "Hubei", value: "湖北" },
-        { name: "Hunan", value: "湖南" },
-        { name: "Jilin", value: "吉林" },
-        { name: "Jiangsu", value: "江苏" },
-        { name: "Jiangxi", value: "江西" },
-        { name: "Liaoning", value: "辽宁" },
-        { name: "Ningsia Hui Autonomous Region", value: "宁夏" },
-        { name: "Qinghai", value: "青海" },
-        { name: "Shandong", value: "山东" },
-        { name: "Shanxi", value: "山西" },
-        { name: "Shaanxi", value: "陕西" },
-        { name: "Shanghai", value: "上海" },
-        { name: "Sichuan", value: "四川" },
-        { name: "Tianjin", value: "天津" },
-        { name: "Tibet Autonomous Region", value: "西藏" },
-        { name: "Xinjiang Uyghur Autonomous Region", value: "新疆" },
-        { name: "Yunnan", value: "云南" },
-        { name: "Zhejiang", value: "浙江" },
-        { name: "Chongqing", value: "重庆" },
-        { name: "Macao", value: "澳门" },
-        { name: "HongKong", value: "香港" },
-        { name: "Hong Kong", value: "香港" },
-        { name: "Taiwan", value: "台湾" },
-        { name: "Heilongjiang", value: "黑龙江" },
-        { name: "Inner Mongolia Autonomous Region", value: "内蒙古" }
-    ]
-
-    // 转化省份到汉字
-    var convertProvince = function (data) {
-        for (var i = 0; i < provinces.length; i++) {
-            if (provinces[i].name == data) {
-                return provinces[i].value;
-            }
-        }
-        // console.log(data)
-        return "dropit";
-    }
-
-    // 根据省份名获取相应的响应时间段
-    var getTimesByRegion = function (data,region){
-        for(var i = 0;i < data.length; i++){
-            if( region == data[i].key ){
-                return data[i].buckets.buckets;
-            }
-        }
-    }
-
-
 
     //state.query
     
@@ -145,7 +85,7 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
         return;
       }
         var avgArr = new Array();
-        // speeds = new Array();
+        option.series[0].data.length=0;
         //  console.log("=========resp=========");
         //  console.log(resp);
         tableGroups = tabifyAggResponse($scope.vis, resp);
@@ -160,13 +100,14 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
                 avgArr.push(avg_speed);
                 option.series[0].data.push(
                     {
-                        name:convertProvince(region_name),
+                        name:region_name,
                         value:avg_speed.toFixed(2)
                     }
                 )
 
             });
         });
+        mychart.clear();
         option.visualMap.max = Math.max.apply(Math, avgArr);
         mychart.setOption(option,true);
         width = $(rootElement).width() - margin.left - margin.right;
@@ -176,7 +117,7 @@ module.controller('EchartsMapController', function ($scope, $element, $rootScope
             width,
             height
         });
-      return  notify.timed('Echarts Bar Controller', resp);
+      return  notify.timed('Echarts Map Controller', resp);
     });
 
     // Automatic resizing of graphics
